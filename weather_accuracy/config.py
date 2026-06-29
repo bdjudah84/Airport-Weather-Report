@@ -65,7 +65,7 @@ VISUALCROSSING_API_KEY = os.environ.get("VISUALCROSSING_API_KEY", "").strip()
 # Required by the NWS API. Set to something identifying you / your org.
 # https://www.weather.gov/documentation/services-web-api
 NWS_USER_AGENT = os.environ.get(
-    "NWS_USER_AGENT", "weather-accuracy-report (contact: you@example.com)"
+    "NWS_USER_AGENT", "weather-accuracy-report (contact: bdjudah84@gmail.com)"
 )
 
 
