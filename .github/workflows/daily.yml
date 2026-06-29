@@ -43,7 +43,7 @@ jobs:
           VISUALCROSSING_API_KEY: ${{ secrets.VISUALCROSSING_API_KEY }}
           # Data + report live inside the repo so they persist across runs.
           WX_DATA_DIR: ${{ github.workspace }}/wx_data
-        run: python -m weather_accuracy daily
+        run: python -u -m weather_accuracy daily
 
       - name: Publish report to the docs/ folder (served by GitHub Pages)
         run: |
