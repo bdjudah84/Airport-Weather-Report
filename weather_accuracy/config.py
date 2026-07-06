@@ -65,7 +65,7 @@ VISUALCROSSING_API_KEY = os.environ.get("VISUALCROSSING_API_KEY", "").strip()
 # Required by the NWS API. Set to something identifying you / your org.
 # https://www.weather.gov/documentation/services-web-api
 NWS_USER_AGENT = os.environ.get(
-    "NWS_USER_AGENT", "weather-accuracy-report (contact: bdjudah84@gmail.com)"
+    "NWS_USER_AGENT", "weather-accuracy-report (contact: you@example.com)"
 )
 
 
@@ -90,6 +90,24 @@ OBSERVATION_FINALIZE_BUFFER_HOURS = float(os.environ.get("WX_FINALIZE_BUFFER_HOU
 
 # Rolling windows (in days) reported on the scoreboard. None == all-time.
 SCOREBOARD_WINDOWS = [7, 30, 90, None]
+
+# --- Accuracy-weighted consensus ------------------------------------------
+# A synthetic "source" combining all real sources, each weighted by its recent
+# accuracy. Stored at forecast time (using only accuracy known so far, so there
+# is no look-ahead) and scored day-to-day like any other source.
+CONSENSUS_ENABLED = True
+CONSENSUS_WINDOW_DAYS = 30       # trailing window for computing source weights
+CONSENSUS_MIN_SAMPLES = 5        # min scored days for a per-airport weight;
+                                 # below this, fall back to the source's overall
+                                 # record, then to equal weights
+CONSENSUS_WEIGHT_POWER = 1.0     # weight = 1 / (MAE ** power); higher favors
+                                 # accurate sources more aggressively
+CONSENSUS_MAE_FLOOR = 0.5        # degrees F added to MAE before inverting, to
+                                 # keep a near-perfect source from dominating
+
+# --- Forecast spread labels (degrees F, based on the high-temp std dev) -----
+SPREAD_TIGHT_F = 1.5             # <= this: sources strongly agree
+SPREAD_WIDE_F = 3.0             # >  this: sources disagree notably
 
 # Storage location for the local-Parquet fallback (ignored on Databricks,
 # which uses Delta tables instead -- see store.py).
