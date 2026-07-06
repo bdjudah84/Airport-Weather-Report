@@ -21,7 +21,8 @@
   tbody tr:last-child td { border-bottom: none; }
   .num { text-align: right; font-variant-numeric: tabular-nums; }
   .hl { text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .hl.avg { font-weight: 600; background: #f6f5f0; }
+  .hl.cons { background: #f6f5f0; font-weight: 600; }
+  .hl.cons.wtd { background: #e7edf5; }
   .fcst td.src { position: sticky; left: 0; background: #fff; }
   .dim { color: #9a988f; }
   .rank { color: #9a988f; width: 28px; }
@@ -35,23 +36,188 @@
   .lean.warm { background: #f6d2bd; color: #8a3b1c; }
   .lean.cold { background: #cfe0f0; color: #1d4e7a; }
   .lean.even { background: #e9e8e2; color: #6b6a63; }
+  .consrow { background: #f3f6fb; }
+  .consrow .src { font-weight: 600; }
   .mini { max-width: 360px; }
   .scroll { overflow-x: auto; }
   .heat td.src { position: sticky; left: 0; background: #fff; }
 </style></head><body>
       <h1>Airport forecast accuracy</h1>
-      <p class="meta">Generated Jul 05, 2026 16:53 UTC &middot;
-        19 airports &middot; 10 sources &middot;
-        6 days of verified accuracy data (Jun 29, 2026 &ndash; Jul 04, 2026)</p>
+      <p class="meta">Generated Jul 06, 2026 11:54 UTC &middot;
+        19 airports &middot; 12 sources &middot;
+        7 days of verified accuracy data (Jun 29, 2026 &ndash; Jul 05, 2026)</p>
     
-      <h2>Daily forecasts <span class="sub">(high / low &deg;F for Jul 05, 2026)</span></h2>
-      <p class="note">What each source is predicting for every airport. The last
-        column is the average across sources.</p>
+      <h2>Daily forecasts <span class="sub">(high / low &deg;F for Jul 06, 2026)</span></h2>
+      <p class="note">What each source is predicting for every airport. Last two columns are the equal-weight mean and the accuracy-weighted consensus (&#9733;). </p>
       <div class="scroll">
       <table class="fcst">
-        <thead><tr><th>Airport</th><th>nws</th><th>om_best</th><th>om_ecmwf</th><th>om_gfs</th><th>om_icon</th><th>om_gem</th><th>om_ukmo</th><th>om_meteofrance</th><th>metno</th><th>om_jma</th><th>Average</th></tr></thead>
-        <tbody><tr><td class='src'>KATL</td><td class='hl'>95&deg; / 75&deg;</td><td class='hl'>93&deg; / 73&deg;</td><td class='hl'>93&deg; / 72&deg;</td><td class='hl'>93&deg; / 73&deg;</td><td class='hl'>91&deg; / 74&deg;</td><td class='hl'>91&deg; / 75&deg;</td><td class='hl'>90&deg; / 78&deg;</td><td class='hl'>94&deg; / 76&deg;</td><td class='hl'>93&deg; / 76&deg;</td><td class='hl'>&mdash;</td><td class='hl avg'>93&deg; / 74&deg;</td></tr><tr><td class='src'>KMIA</td><td class='hl'>91&deg; / 79&deg;</td><td class='hl'>&mdash;</td><td class='hl'>87&deg; / 80&deg;</td><td class='hl'>91&deg; / 76&deg;</td><td class='hl'>89&deg; / 81&deg;</td><td class='hl'>87&deg; / 74&deg;</td><td class='hl'>91&deg; / 82&deg;</td><td class='hl'>89&deg; / 79&deg;</td><td class='hl'>88&deg; / 77&deg;</td><td class='hl'>86&deg; / 79&deg;</td><td class='hl avg'>89&deg; / 79&deg;</td></tr><tr><td class='src'>KDCA</td><td class='hl'>96&deg; / 74&deg;</td><td class='hl'>&mdash;</td><td class='hl'>96&deg; / 73&deg;</td><td class='hl'>97&deg; / 75&deg;</td><td class='hl'>97&deg; / 75&deg;</td><td class='hl'>94&deg; / 75&deg;</td><td class='hl'>97&deg; / 76&deg;</td><td class='hl'>93&deg; / 79&deg;</td><td class='hl'>93&deg; / 80&deg;</td><td class='hl'>88&deg; / 77&deg;</td><td class='hl avg'>95&deg; / 76&deg;</td></tr><tr><td class='src'>KHOU</td><td class='hl'>97&deg; / 79&deg;</td><td class='hl'>&mdash;</td><td class='hl'>&mdash;</td><td class='hl'>98&deg; / 77&deg;</td><td class='hl'>96&deg; / 77&deg;</td><td class='hl'>96&deg; / 77&deg;</td><td class='hl'>97&deg; / 80&deg;</td><td class='hl'>94&deg; / 80&deg;</td><td class='hl'>94&deg; / 82&deg;</td><td class='hl'>91&deg; / 78&deg;</td><td class='hl avg'>95&deg; / 79&deg;</td></tr><tr><td class='src'>KBOS</td><td class='hl'>80&deg; / 67&deg;</td><td class='hl'>78&deg; / 69&deg;</td><td class='hl'>80&deg; / 70&deg;</td><td class='hl'>78&deg; / 69&deg;</td><td class='hl'>79&deg; / 72&deg;</td><td class='hl'>81&deg; / 70&deg;</td><td class='hl'>82&deg; / 72&deg;</td><td class='hl'>79&deg; / 72&deg;</td><td class='hl'>70&deg; / 69&deg;</td><td class='hl'>77&deg; / 70&deg;</td><td class='hl avg'>78&deg; / 70&deg;</td></tr><tr><td class='src'>KMSY</td><td class='hl'>91&deg; / 77&deg;</td><td class='hl'>94&deg; / 76&deg;</td><td class='hl'>86&deg; / 75&deg;</td><td class='hl'>&mdash;</td><td class='hl'>90&deg; / 78&deg;</td><td class='hl'>92&deg; / 76&deg;</td><td class='hl'>94&deg; / 81&deg;</td><td class='hl'>84&deg; / 80&deg;</td><td class='hl'>87&deg; / 77&deg;</td><td class='hl'>88&deg; / 76&deg;</td><td class='hl avg'>90&deg; / 77&deg;</td></tr><tr><td class='src'>KOKC</td><td class='hl'>93&deg; / 70&deg;</td><td class='hl'>92&deg; / 68&deg;</td><td class='hl'>89&deg; / 72&deg;</td><td class='hl'>&mdash;</td><td class='hl'>92&deg; / 69&deg;</td><td class='hl'>88&deg; / 70&deg;</td><td class='hl'>94&deg; / 75&deg;</td><td class='hl'>98&deg; / 82&deg;</td><td class='hl'>92&deg; / 74&deg;</td><td class='hl'>88&deg; / 73&deg;</td><td class='hl avg'>92&deg; / 72&deg;</td></tr><tr><td class='src'>KAUS</td><td class='hl'>97&deg; / 78&deg;</td><td class='hl'>&mdash;</td><td class='hl'>98&deg; / 76&deg;</td><td class='hl'>98&deg; / 78&deg;</td><td class='hl'>96&deg; / 78&deg;</td><td class='hl'>98&deg; / 76&deg;</td><td class='hl'>97&deg; / 77&deg;</td><td class='hl'>98&deg; / 80&deg;</td><td class='hl'>97&deg; / 86&deg;</td><td class='hl'>97&deg; / 80&deg;</td><td class='hl avg'>97&deg; / 79&deg;</td></tr><tr><td class='src'>KDEN</td><td class='hl'>93&deg; / 63&deg;</td><td class='hl'>95&deg; / 61&deg;</td><td class='hl'>94&deg; / 66&deg;</td><td class='hl'>95&deg; / 61&deg;</td><td class='hl'>93&deg; / 63&deg;</td><td class='hl'>92&deg; / 58&deg;</td><td class='hl'>95&deg; / 62&deg;</td><td class='hl'>94&deg; / 68&deg;</td><td class='hl'>94&deg; / 79&deg;</td><td class='hl'>91&deg; / 68&deg;</td><td class='hl avg'>94&deg; / 65&deg;</td></tr><tr><td class='src'>KSFO</td><td class='hl'>69&deg; / 56&deg;</td><td class='hl'>66&deg; / 53&deg;</td><td class='hl'>64&deg; / 55&deg;</td><td class='hl'>66&deg; / 53&deg;</td><td class='hl'>&mdash;</td><td class='hl'>68&deg; / 56&deg;</td><td class='hl'>68&deg; / 56&deg;</td><td class='hl'>59&deg; / 56&deg;</td><td class='hl'>66&deg; / 57&deg;</td><td class='hl'>61&deg; / 56&deg;</td><td class='hl avg'>65&deg; / 55&deg;</td></tr><tr><td class='src'>KPHL</td><td class='hl'>92&deg; / 71&deg;</td><td class='hl'>&mdash;</td><td class='hl'>92&deg; / 74&deg;</td><td class='hl'>94&deg; / 74&deg;</td><td class='hl'>94&deg; / 76&deg;</td><td class='hl'>96&deg; / 71&deg;</td><td class='hl'>94&deg; / 77&deg;</td><td class='hl'>89&deg; / 76&deg;</td><td class='hl'>92&deg; / 74&deg;</td><td class='hl'>86&deg; / 77&deg;</td><td class='hl avg'>92&deg; / 74&deg;</td></tr><tr><td class='src'>KLAX</td><td class='hl'>72&deg; / 62&deg;</td><td class='hl'>73&deg; / 62&deg;</td><td class='hl'>&mdash;</td><td class='hl'>73&deg; / 62&deg;</td><td class='hl'>78&deg; / 64&deg;</td><td class='hl'>77&deg; / 58&deg;</td><td class='hl'>74&deg; / 64&deg;</td><td class='hl'>70&deg; / 64&deg;</td><td class='hl'>69&deg; / 65&deg;</td><td class='hl'>75&deg; / 66&deg;</td><td class='hl avg'>73&deg; / 63&deg;</td></tr><tr><td class='src'>KLAS</td><td class='hl'>105&deg; / 84&deg;</td><td class='hl'>&mdash;</td><td class='hl'>104&deg; / 80&deg;</td><td class='hl'>105&deg; / 85&deg;</td><td class='hl'>&mdash;</td><td class='hl'>106&deg; / 68&deg;</td><td class='hl'>103&deg; / 81&deg;</td><td class='hl'>105&deg; / 88&deg;</td><td class='hl'>104&deg; / 92&deg;</td><td class='hl'>103&deg; / 80&deg;</td><td class='hl avg'>104&deg; / 82&deg;</td></tr><tr><td class='src'>KSEA</td><td class='hl'>74&deg; / 54&deg;</td><td class='hl'>72&deg; / 53&deg;</td><td class='hl'>72&deg; / 53&deg;</td><td class='hl'>72&deg; / 53&deg;</td><td class='hl'>72&deg; / 53&deg;</td><td class='hl'>75&deg; / 51&deg;</td><td class='hl'>75&deg; / 55&deg;</td><td class='hl'>71&deg; / 57&deg;</td><td class='hl'>72&deg; / 61&deg;</td><td class='hl'>70&deg; / 54&deg;</td><td class='hl avg'>73&deg; / 54&deg;</td></tr><tr><td class='src'>KMSP</td><td class='hl'>85&deg; / 68&deg;</td><td class='hl'>88&deg; / 64&deg;</td><td class='hl'>86&deg; / 66&deg;</td><td class='hl'>88&deg; / 64&deg;</td><td class='hl'>86&deg; / 67&deg;</td><td class='hl'>89&deg; / 65&deg;</td><td class='hl'>88&deg; / 67&deg;</td><td class='hl'>83&deg; / 68&deg;</td><td class='hl'>87&deg; / 77&deg;</td><td class='hl'>81&deg; / 68&deg;</td><td class='hl avg'>86&deg; / 67&deg;</td></tr><tr><td class='src'>KMDW</td><td class='hl'>76&deg; / 66&deg;</td><td class='hl'>75&deg; / 65&deg;</td><td class='hl'>76&deg; / 67&deg;</td><td class='hl'>75&deg; / 65&deg;</td><td class='hl'>75&deg; / 68&deg;</td><td class='hl'>80&deg; / 67&deg;</td><td class='hl'>78&deg; / 67&deg;</td><td class='hl'>70&deg; / 66&deg;</td><td class='hl'>77&deg; / 68&deg;</td><td class='hl'>75&deg; / 69&deg;</td><td class='hl avg'>76&deg; / 67&deg;</td></tr><tr><td class='src'>KPHX</td><td class='hl'>110&deg; / 87&deg;</td><td class='hl'>112&deg; / 88&deg;</td><td class='hl'>109&deg; / 88&deg;</td><td class='hl'>112&deg; / 88&deg;</td><td class='hl'>108&deg; / 86&deg;</td><td class='hl'>107&deg; / 74&deg;</td><td class='hl'>106&deg; / 84&deg;</td><td class='hl'>107&deg; / 88&deg;</td><td class='hl'>109&deg; / 94&deg;</td><td class='hl'>105&deg; / 87&deg;</td><td class='hl avg'>108&deg; / 86&deg;</td></tr><tr><td class='src'>KDFW</td><td class='hl'>100&deg; / 78&deg;</td><td class='hl'>101&deg; / 73&deg;</td><td class='hl'>&mdash;</td><td class='hl'>101&deg; / 73&deg;</td><td class='hl'>99&deg; / 79&deg;</td><td class='hl'>97&deg; / 80&deg;</td><td class='hl'>98&deg; / 83&deg;</td><td class='hl'>97&deg; / 78&deg;</td><td class='hl'>97&deg; / 86&deg;</td><td class='hl'>93&deg; / 80&deg;</td><td class='hl avg'>98&deg; / 79&deg;</td></tr><tr><td class='src'>KSAT</td><td class='hl'>95&deg; / 76&deg;</td><td class='hl'>&mdash;</td><td class='hl'>96&deg; / 76&deg;</td><td class='hl'>98&deg; / 77&deg;</td><td class='hl'>96&deg; / 77&deg;</td><td class='hl'>95&deg; / 77&deg;</td><td class='hl'>95&deg; / 77&deg;</td><td class='hl'>98&deg; / 79&deg;</td><td class='hl'>96&deg; / 86&deg;</td><td class='hl'>97&deg; / 79&deg;</td><td class='hl avg'>96&deg; / 78&deg;</td></tr></tbody>
+        <thead><tr><th>Airport</th><th>nws</th><th>om_best</th><th>om_ecmwf</th><th>om_gfs</th><th>om_icon</th><th>om_gem</th><th>om_ukmo</th><th>om_meteofrance</th><th>om_jma</th><th>Mean</th><th>Wtd&#9733;</th></tr></thead>
+        <tbody><tr><td class='src'>KATL</td><td class='hl'>91&deg; / 74&deg;</td><td class='hl'>87&deg; / 72&deg;</td><td class='hl'>87&deg; / 71&deg;</td><td class='hl'>87&deg; / 72&deg;</td><td class='hl'>84&deg; / 73&deg;</td><td class='hl'>81&deg; / 72&deg;</td><td class='hl'>82&deg; / 76&deg;</td><td class='hl'>90&deg; / 72&deg;</td><td class='hl'>82&deg; / 74&deg;</td><td class='hl cons'>86&deg; / 73&deg;</td><td class='hl cons wtd'>86&deg; / 73&deg;</td></tr><tr><td class='src'>KMIA</td><td class='hl'>91&deg; / 79&deg;</td><td class='hl'>&mdash;</td><td class='hl'>89&deg; / 80&deg;</td><td class='hl'>90&deg; / 77&deg;</td><td class='hl'>88&deg; / 80&deg;</td><td class='hl'>86&deg; / 74&deg;</td><td class='hl'>91&deg; / 83&deg;</td><td class='hl'>86&deg; / 79&deg;</td><td class='hl'>86&deg; / 79&deg;</td><td class='hl cons'>88&deg; / 79&deg;</td><td class='hl cons wtd'>89&deg; / 79&deg;</td></tr><tr><td class='src'>KDCA</td><td class='hl'>90&deg; / 73&deg;</td><td class='hl'>&mdash;</td><td class='hl'>91&deg; / 73&deg;</td><td class='hl'>91&deg; / 75&deg;</td><td class='hl'>85&deg; / 76&deg;</td><td class='hl'>92&deg; / 75&deg;</td><td class='hl'>91&deg; / 79&deg;</td><td class='hl'>83&deg; / 76&deg;</td><td class='hl'>83&deg; / 77&deg;</td><td class='hl cons'>88&deg; / 75&deg;</td><td class='hl cons wtd'>89&deg; / 75&deg;</td></tr><tr><td class='src'>KHOU</td><td class='hl'>96&deg; / 78&deg;</td><td class='hl'>&mdash;</td><td class='hl'>97&deg; / 80&deg;</td><td class='hl'>96&deg; / 78&deg;</td><td class='hl'>95&deg; / 78&deg;</td><td class='hl'>92&deg; / 77&deg;</td><td class='hl'>97&deg; / 81&deg;</td><td class='hl'>95&deg; / 80&deg;</td><td class='hl'>92&deg; / 79&deg;</td><td class='hl cons'>95&deg; / 79&deg;</td><td class='hl cons wtd'>95&deg; / 79&deg;</td></tr><tr><td class='src'>KBOS</td><td class='hl'>72&deg; / 61&deg;</td><td class='hl'>73&deg; / 66&deg;</td><td class='hl'>72&deg; / 62&deg;</td><td class='hl'>73&deg; / 66&deg;</td><td class='hl'>73&deg; / 68&deg;</td><td class='hl'>&mdash;</td><td class='hl'>74&deg; / 67&deg;</td><td class='hl'>73&deg; / 66&deg;</td><td class='hl'>&mdash;</td><td class='hl cons'>73&deg; / 65&deg;</td><td class='hl cons wtd'>73&deg; / 66&deg;</td></tr><tr><td class='src'>KMSY</td><td class='hl'>91&deg; / 77&deg;</td><td class='hl'>90&deg; / 73&deg;</td><td class='hl'>86&deg; / 76&deg;</td><td class='hl'>90&deg; / 73&deg;</td><td class='hl'>90&deg; / 76&deg;</td><td class='hl'>87&deg; / 73&deg;</td><td class='hl'>87&deg; / 77&deg;</td><td class='hl'>85&deg; / 76&deg;</td><td class='hl'>89&deg; / 74&deg;</td><td class='hl cons'>88&deg; / 75&deg;</td><td class='hl cons wtd'>89&deg; / 75&deg;</td></tr><tr><td class='src'>KOKC</td><td class='hl'>93&deg; / 70&deg;</td><td class='hl'>&mdash;</td><td class='hl'>90&deg; / 74&deg;</td><td class='hl'>94&deg; / 70&deg;</td><td class='hl'>92&deg; / 71&deg;</td><td class='hl'>&mdash;</td><td class='hl'>93&deg; / 79&deg;</td><td class='hl'>94&deg; / 74&deg;</td><td class='hl'>87&deg; / 75&deg;</td><td class='hl cons'>92&deg; / 73&deg;</td><td class='hl cons wtd'>92&deg; / 73&deg;</td></tr><tr><td class='src'>KAUS</td><td class='hl'>96&deg; / 76&deg;</td><td class='hl'>98&deg; / 76&deg;</td><td class='hl'>98&deg; / 78&deg;</td><td class='hl'>98&deg; / 76&deg;</td><td class='hl'>97&deg; / 77&deg;</td><td class='hl'>96&deg; / 76&deg;</td><td class='hl'>94&deg; / 79&deg;</td><td class='hl'>98&deg; / 81&deg;</td><td class='hl'>92&deg; / 82&deg;</td><td class='hl cons'>96&deg; / 78&deg;</td><td class='hl cons wtd'>97&deg; / 77&deg;</td></tr><tr><td class='src'>KDEN</td><td class='hl'>96&deg; / 63&deg;</td><td class='hl'>98&deg; / 64&deg;</td><td class='hl'>97&deg; / 72&deg;</td><td class='hl'>98&deg; / 64&deg;</td><td class='hl'>96&deg; / 68&deg;</td><td class='hl'>96&deg; / 61&deg;</td><td class='hl'>98&deg; / 67&deg;</td><td class='hl'>99&deg; / 73&deg;</td><td class='hl'>94&deg; / 74&deg;</td><td class='hl cons'>97&deg; / 67&deg;</td><td class='hl cons wtd'>97&deg; / 66&deg;</td></tr><tr><td class='src'>KSFO</td><td class='hl'>68&deg; / 55&deg;</td><td class='hl'>64&deg; / 56&deg;</td><td class='hl'>&mdash;</td><td class='hl'>64&deg; / 56&deg;</td><td class='hl'>66&deg; / 57&deg;</td><td class='hl'>66&deg; / 56&deg;</td><td class='hl'>&mdash;</td><td class='hl'>58&deg; / 56&deg;</td><td class='hl'>60&deg; / 56&deg;</td><td class='hl cons'>64&deg; / 56&deg;</td><td class='hl cons wtd'>65&deg; / 56&deg;</td></tr><tr><td class='src'>KPHL</td><td class='hl'>82&deg; / 67&deg;</td><td class='hl'>81&deg; / 70&deg;</td><td class='hl'>81&deg; / 72&deg;</td><td class='hl'>81&deg; / 70&deg;</td><td class='hl'>79&deg; / 70&deg;</td><td class='hl'>83&deg; / 70&deg;</td><td class='hl'>86&deg; / 75&deg;</td><td class='hl'>79&deg; / 72&deg;</td><td class='hl'>82&deg; / 74&deg;</td><td class='hl cons'>82&deg; / 71&deg;</td><td class='hl cons wtd'>81&deg; / 71&deg;</td></tr><tr><td class='src'>KLAX</td><td class='hl'>73&deg; / 62&deg;</td><td class='hl'>74&deg; / 60&deg;</td><td class='hl'>84&deg; / 64&deg;</td><td class='hl'>74&deg; / 60&deg;</td><td class='hl'>78&deg; / 62&deg;</td><td class='hl'>77&deg; / 57&deg;</td><td class='hl'>72&deg; / 64&deg;</td><td class='hl'>72&deg; / 63&deg;</td><td class='hl'>77&deg; / 64&deg;</td><td class='hl cons'>76&deg; / 62&deg;</td><td class='hl cons wtd'>75&deg; / 63&deg;</td></tr><tr><td class='src'>KLAS</td><td class='hl'>108&deg; / 83&deg;</td><td class='hl'>107&deg; / 82&deg;</td><td class='hl'>105&deg; / 80&deg;</td><td class='hl'>107&deg; / 82&deg;</td><td class='hl'>104&deg; / 80&deg;</td><td class='hl'>106&deg; / 68&deg;</td><td class='hl'>106&deg; / 82&deg;</td><td class='hl'>107&deg; / 88&deg;</td><td class='hl'>104&deg; / 82&deg;</td><td class='hl cons'>106&deg; / 81&deg;</td><td class='hl cons wtd'>106&deg; / 82&deg;</td></tr><tr><td class='src'>KSEA</td><td class='hl'>81&deg; / 56&deg;</td><td class='hl'>&mdash;</td><td class='hl'>80&deg; / 56&deg;</td><td class='hl'>83&deg; / 56&deg;</td><td class='hl'>79&deg; / 56&deg;</td><td class='hl'>83&deg; / 54&deg;</td><td class='hl'>83&deg; / 59&deg;</td><td class='hl'>78&deg; / 57&deg;</td><td class='hl'>79&deg; / 52&deg;</td><td class='hl cons'>81&deg; / 56&deg;</td><td class='hl cons wtd'>81&deg; / 56&deg;</td></tr><tr><td class='src'>KMSP</td><td class='hl'>88&deg; / 69&deg;</td><td class='hl'>90&deg; / 68&deg;</td><td class='hl'>91&deg; / 69&deg;</td><td class='hl'>90&deg; / 68&deg;</td><td class='hl'>88&deg; / 70&deg;</td><td class='hl'>93&deg; / 66&deg;</td><td class='hl'>90&deg; / 74&deg;</td><td class='hl'>90&deg; / 71&deg;</td><td class='hl'>85&deg; / 71&deg;</td><td class='hl cons'>90&deg; / 70&deg;</td><td class='hl cons wtd'>90&deg; / 69&deg;</td></tr><tr><td class='src'>KMDW</td><td class='hl'>76&deg; / 65&deg;</td><td class='hl'>74&deg; / 65&deg;</td><td class='hl'>77&deg; / 68&deg;</td><td class='hl'>75&deg; / 65&deg;</td><td class='hl'>82&deg; / 68&deg;</td><td class='hl'>85&deg; / 67&deg;</td><td class='hl'>80&deg; / 67&deg;</td><td class='hl'>78&deg; / 66&deg;</td><td class='hl'>79&deg; / 68&deg;</td><td class='hl cons'>78&deg; / 67&deg;</td><td class='hl cons wtd'>78&deg; / 66&deg;</td></tr><tr><td class='src'>KPHX</td><td class='hl'>112&deg; / 87&deg;</td><td class='hl'>&mdash;</td><td class='hl'>111&deg; / 90&deg;</td><td class='hl'>112&deg; / 85&deg;</td><td class='hl'>110&deg; / 86&deg;</td><td class='hl'>111&deg; / 71&deg;</td><td class='hl'>108&deg; / 87&deg;</td><td class='hl'>111&deg; / 89&deg;</td><td class='hl'>108&deg; / 82&deg;</td><td class='hl cons'>110&deg; / 85&deg;</td><td class='hl cons wtd'>111&deg; / 87&deg;</td></tr><tr><td class='src'>KDFW</td><td class='hl'>97&deg; / 76&deg;</td><td class='hl'>99&deg; / 75&deg;</td><td class='hl'>97&deg; / 78&deg;</td><td class='hl'>99&deg; / 75&deg;</td><td class='hl'>96&deg; / 78&deg;</td><td class='hl'>96&deg; / 78&deg;</td><td class='hl'>91&deg; / 80&deg;</td><td class='hl'>98&deg; / 81&deg;</td><td class='hl'>86&deg; / 77&deg;</td><td class='hl cons'>96&deg; / 77&deg;</td><td class='hl cons wtd'>96&deg; / 77&deg;</td></tr><tr><td class='src'>KSAT</td><td class='hl'>95&deg; / 76&deg;</td><td class='hl'>97&deg; / 77&deg;</td><td class='hl'>94&deg; / 78&deg;</td><td class='hl'>97&deg; / 77&deg;</td><td class='hl'>96&deg; / 77&deg;</td><td class='hl'>&mdash;</td><td class='hl'>94&deg; / 78&deg;</td><td class='hl'>98&deg; / 80&deg;</td><td class='hl'>94&deg; / 80&deg;</td><td class='hl cons'>96&deg; / 78&deg;</td><td class='hl cons wtd'>95&deg; / 78&deg;</td></tr></tbody>
       </table></div>
+      <h2>Forecast agreement <span class="sub">(spread across sources, Jul 06, 2026)</span></h2>
+      <p class="note">How tightly the sources agree, by airport. &sigma; is the standard
+        deviation of the 9 source forecasts (&deg;F) &mdash; smaller means
+        stronger agreement and a more trustworthy consensus; wider spread signals
+        greater uncertainty for that day.</p>
+      <table class="board">
+        <thead><tr>
+          <th>Airport</th><th>High &sigma;</th><th>High range</th>
+          <th>Low &sigma;</th><th>Low range</th><th>Agreement</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="src">KATL</td>
+            <td class="num">3.2</td>
+            <td class="num dim">81&ndash;91</td>
+            <td class="num">1.4</td>
+            <td class="num dim">71&ndash;76</td>
+            <td class="hl"><span class="lean" style="background:#f2c0c0">wide</span></td>
+          </tr>
+          <tr>
+            <td class="src">KMIA</td>
+            <td class="num">2.0</td>
+            <td class="num dim">86&ndash;91</td>
+            <td class="num">2.5</td>
+            <td class="num dim">74&ndash;83</td>
+            <td class="hl"><span class="lean" style="background:#f7e3c0">moderate</span></td>
+          </tr>
+          <tr>
+            <td class="src">KDCA</td>
+            <td class="num">3.5</td>
+            <td class="num dim">83&ndash;92</td>
+            <td class="num">1.9</td>
+            <td class="num dim">73&ndash;79</td>
+            <td class="hl"><span class="lean" style="background:#f2c0c0">wide</span></td>
+          </tr>
+          <tr>
+            <td class="src">KHOU</td>
+            <td class="num">1.9</td>
+            <td class="num dim">92&ndash;97</td>
+            <td class="num">1.2</td>
+            <td class="num dim">77&ndash;81</td>
+            <td class="hl"><span class="lean" style="background:#f7e3c0">moderate</span></td>
+          </tr>
+          <tr>
+            <td class="src">KBOS</td>
+            <td class="num">0.7</td>
+            <td class="num dim">72&ndash;74</td>
+            <td class="num">2.4</td>
+            <td class="num dim">61&ndash;68</td>
+            <td class="hl"><span class="lean" style="background:#cfe8d6">tight</span></td>
+          </tr>
+          <tr>
+            <td class="src">KMSY</td>
+            <td class="num">2.0</td>
+            <td class="num dim">85&ndash;91</td>
+            <td class="num">1.5</td>
+            <td class="num dim">73&ndash;77</td>
+            <td class="hl"><span class="lean" style="background:#f7e3c0">moderate</span></td>
+          </tr>
+          <tr>
+            <td class="src">KOKC</td>
+            <td class="num">2.3</td>
+            <td class="num dim">87&ndash;94</td>
+            <td class="num">2.8</td>
+            <td class="num dim">70&ndash;79</td>
+            <td class="hl"><span class="lean" style="background:#f7e3c0">moderate</span></td>
+          </tr>
+          <tr>
+            <td class="src">KAUS</td>
+            <td class="num">2.0</td>
+            <td class="num dim">92&ndash;98</td>
+            <td class="num">2.0</td>
+            <td class="num dim">76&ndash;82</td>
+            <td class="hl"><span class="lean" style="background:#f7e3c0">moderate</span></td>
+          </tr>
+          <tr>
+            <td class="src">KDEN</td>
+            <td class="num">1.3</td>
+            <td class="num dim">94&ndash;99</td>
+            <td class="num">4.6</td>
+            <td class="num dim">61&ndash;74</td>
+            <td class="hl"><span class="lean" style="background:#cfe8d6">tight</span></td>
+          </tr>
+          <tr>
+            <td class="src">KSFO</td>
+            <td class="num">3.1</td>
+            <td class="num dim">58&ndash;68</td>
+            <td class="num">0.7</td>
+            <td class="num dim">55&ndash;57</td>
+            <td class="hl"><span class="lean" style="background:#f2c0c0">wide</span></td>
+          </tr>
+          <tr>
+            <td class="src">KPHL</td>
+            <td class="num">2.0</td>
+            <td class="num dim">79&ndash;86</td>
+            <td class="num">2.3</td>
+            <td class="num dim">67&ndash;75</td>
+            <td class="hl"><span class="lean" style="background:#f7e3c0">moderate</span></td>
+          </tr>
+          <tr>
+            <td class="src">KLAX</td>
+            <td class="num">3.8</td>
+            <td class="num dim">72&ndash;84</td>
+            <td class="num">2.4</td>
+            <td class="num dim">57&ndash;64</td>
+            <td class="hl"><span class="lean" style="background:#f2c0c0">wide</span></td>
+          </tr>
+          <tr>
+            <td class="src">KLAS</td>
+            <td class="num">1.3</td>
+            <td class="num dim">104&ndash;108</td>
+            <td class="num">5.0</td>
+            <td class="num dim">68&ndash;88</td>
+            <td class="hl"><span class="lean" style="background:#cfe8d6">tight</span></td>
+          </tr>
+          <tr>
+            <td class="src">KSEA</td>
+            <td class="num">2.0</td>
+            <td class="num dim">78&ndash;83</td>
+            <td class="num">1.8</td>
+            <td class="num dim">52&ndash;59</td>
+            <td class="hl"><span class="lean" style="background:#f7e3c0">moderate</span></td>
+          </tr>
+          <tr>
+            <td class="src">KMSP</td>
+            <td class="num">2.3</td>
+            <td class="num dim">85&ndash;93</td>
+            <td class="num">2.1</td>
+            <td class="num dim">66&ndash;74</td>
+            <td class="hl"><span class="lean" style="background:#f7e3c0">moderate</span></td>
+          </tr>
+          <tr>
+            <td class="src">KMDW</td>
+            <td class="num">3.3</td>
+            <td class="num dim">74&ndash;85</td>
+            <td class="num">1.4</td>
+            <td class="num dim">65&ndash;68</td>
+            <td class="hl"><span class="lean" style="background:#f2c0c0">wide</span></td>
+          </tr>
+          <tr>
+            <td class="src">KPHX</td>
+            <td class="num">1.6</td>
+            <td class="num dim">108&ndash;112</td>
+            <td class="num">5.7</td>
+            <td class="num dim">71&ndash;90</td>
+            <td class="hl"><span class="lean" style="background:#f7e3c0">moderate</span></td>
+          </tr>
+          <tr>
+            <td class="src">KDFW</td>
+            <td class="num">3.9</td>
+            <td class="num dim">86&ndash;99</td>
+            <td class="num">1.9</td>
+            <td class="num dim">75&ndash;81</td>
+            <td class="hl"><span class="lean" style="background:#f2c0c0">wide</span></td>
+          </tr>
+          <tr>
+            <td class="src">KSAT</td>
+            <td class="num">1.4</td>
+            <td class="num dim">94&ndash;98</td>
+            <td class="num">1.3</td>
+            <td class="num dim">76&ndash;80</td>
+            <td class="hl"><span class="lean" style="background:#cfe8d6">tight</span></td>
+          </tr></tbody>
+      </table>
       <h2>Accuracy leaderboard <span class="sub">(last 30 days)</span></h2>
       <p class="note">Ranked by combined high + low mean absolute error &mdash; lower is more accurate.
         Bias shows whether a source runs systematically warm or cold. Hit rate = share of
@@ -63,7 +229,7 @@
           <th>Hit rate</th><th>n</th>
         </tr></thead>
         <tbody>
-          <tr>
+          <tr class="">
             <td class="rank">1</td>
             <td class="src">om_gfs</td>
             <td class="bar"><div class="track"><div class="fill"
@@ -71,98 +237,98 @@
             <td class="num">1.6</td>
             <td class="num">1.5</td>
             <td class="num">+0.2 <span class="lean even">even</span></td>
-            <td class="num">76%</td>
-            <td class="num dim">136</td>
+            <td class="num">75%</td>
+            <td class="num dim">153</td>
           </tr>
-          <tr>
+          <tr class="">
             <td class="rank">2</td>
             <td class="src">om_best</td>
             <td class="bar"><div class="track"><div class="fill"
                 style="width:36%"></div></div><span>1.6&deg;</span></td>
             <td class="num">1.6</td>
             <td class="num">1.6</td>
-            <td class="num">+0.4 <span class="lean even">even</span></td>
-            <td class="num">74%</td>
-            <td class="num dim">129</td>
+            <td class="num">+0.3 <span class="lean even">even</span></td>
+            <td class="num">72%</td>
+            <td class="num dim">141</td>
           </tr>
-          <tr>
+          <tr class="">
             <td class="rank">3</td>
             <td class="src">nws</td>
             <td class="bar"><div class="track"><div class="fill"
                 style="width:40%"></div></div><span>1.8&deg;</span></td>
             <td class="num">1.6</td>
             <td class="num">1.9</td>
-            <td class="num">+0.1 <span class="lean even">even</span></td>
-            <td class="num">70%</td>
-            <td class="num dim">152</td>
+            <td class="num">+0.0 <span class="lean even">even</span></td>
+            <td class="num">71%</td>
+            <td class="num dim">171</td>
           </tr>
-          <tr>
+          <tr class="">
             <td class="rank">4</td>
             <td class="src">om_icon</td>
             <td class="bar"><div class="track"><div class="fill"
                 style="width:43%"></div></div><span>1.9&deg;</span></td>
             <td class="num">2.0</td>
-            <td class="num">1.7</td>
-            <td class="num">-1.3 <span class="lean cold">cold</span></td>
-            <td class="num">57%</td>
-            <td class="num dim">138</td>
+            <td class="num">1.8</td>
+            <td class="num">-1.2 <span class="lean cold">cold</span></td>
+            <td class="num">56%</td>
+            <td class="num dim">155</td>
           </tr>
-          <tr>
+          <tr class="">
             <td class="rank">5</td>
-            <td class="src">om_ukmo</td>
-            <td class="bar"><div class="track"><div class="fill"
-                style="width:51%"></div></div><span>2.2&deg;</span></td>
-            <td class="num">2.3</td>
-            <td class="num">2.2</td>
-            <td class="num">+0.1 <span class="lean even">even</span></td>
-            <td class="num">53%</td>
-            <td class="num dim">143</td>
-          </tr>
-          <tr>
-            <td class="rank">6</td>
             <td class="src">om_ecmwf</td>
             <td class="bar"><div class="track"><div class="fill"
-                style="width:52%"></div></div><span>2.3&deg;</span></td>
-            <td class="num">2.5</td>
+                style="width:51%"></div></div><span>2.3&deg;</span></td>
+            <td class="num">2.4</td>
             <td class="num">2.1</td>
-            <td class="num">-0.5 <span class="lean even">even</span></td>
-            <td class="num">55%</td>
-            <td class="num dim">134</td>
+            <td class="num">-0.6 <span class="lean even">even</span></td>
+            <td class="num">57%</td>
+            <td class="num dim">150</td>
           </tr>
-          <tr>
+          <tr class="">
+            <td class="rank">6</td>
+            <td class="src">om_ukmo</td>
+            <td class="bar"><div class="track"><div class="fill"
+                style="width:52%"></div></div><span>2.3&deg;</span></td>
+            <td class="num">2.2</td>
+            <td class="num">2.3</td>
+            <td class="num">+0.1 <span class="lean even">even</span></td>
+            <td class="num">55%</td>
+            <td class="num dim">162</td>
+          </tr>
+          <tr class="">
             <td class="rank">7</td>
             <td class="src">om_meteofrance</td>
             <td class="bar"><div class="track"><div class="fill"
-                style="width:63%"></div></div><span>2.8&deg;</span></td>
+                style="width:66%"></div></div><span>2.9&deg;</span></td>
             <td class="num">3.4</td>
-            <td class="num">2.2</td>
+            <td class="num">2.4</td>
             <td class="num">-1.8 <span class="lean cold">cold</span></td>
-            <td class="num">45%</td>
-            <td class="num dim">146</td>
+            <td class="num">44%</td>
+            <td class="num dim">165</td>
           </tr>
-          <tr>
+          <tr class="">
             <td class="rank">8</td>
             <td class="src">om_jma</td>
             <td class="bar"><div class="track"><div class="fill"
-                style="width:70%"></div></div><span>3.1&deg;</span></td>
+                style="width:71%"></div></div><span>3.1&deg;</span></td>
             <td class="num">3.9</td>
-            <td class="num">2.2</td>
-            <td class="num">-3.3 <span class="lean cold">cold</span></td>
-            <td class="num">26%</td>
-            <td class="num dim">142</td>
+            <td class="num">2.3</td>
+            <td class="num">-3.4 <span class="lean cold">cold</span></td>
+            <td class="num">27%</td>
+            <td class="num dim">160</td>
           </tr>
-          <tr>
+          <tr class="">
             <td class="rank">9</td>
             <td class="src">om_gem</td>
             <td class="bar"><div class="track"><div class="fill"
-                style="width:78%"></div></div><span>3.4&deg;</span></td>
-            <td class="num">2.6</td>
-            <td class="num">4.3</td>
+                style="width:77%"></div></div><span>3.4&deg;</span></td>
+            <td class="num">2.5</td>
+            <td class="num">4.2</td>
             <td class="num">-0.9 <span class="lean even">even</span></td>
-            <td class="num">53%</td>
-            <td class="num dim">143</td>
+            <td class="num">52%</td>
+            <td class="num dim">162</td>
           </tr>
-          <tr>
+          <tr class="">
             <td class="rank">10</td>
             <td class="src">metno</td>
             <td class="bar"><div class="track"><div class="fill"
@@ -171,14 +337,14 @@
             <td class="num">5.8</td>
             <td class="num">-1.4 <span class="lean cold">cold</span></td>
             <td class="num">49%</td>
-            <td class="num dim">152</td>
+            <td class="num dim">171</td>
           </tr></tbody>
       </table>
-      <h2>Most recent verified day <span class="sub">(Jul 04, 2026)</span></h2>
+      <h2>Most recent verified day <span class="sub">(Jul 05, 2026)</span></h2>
       <p class="note">Average high-temperature miss across all airports that day.</p>
       <table class="mini">
         <thead><tr><th>Source</th><th>Avg high error</th></tr></thead>
-        <tbody><tr><td class='src'>om_best</td><td class='num' style='background:#cfe8d6'>1.5&deg;</td></tr><tr><td class='src'>om_ukmo</td><td class='num' style='background:#cfe8d6'>1.7&deg;</td></tr><tr><td class='src'>nws</td><td class='num' style='background:#cfe8d6'>1.7&deg;</td></tr><tr><td class='src'>om_gfs</td><td class='num' style='background:#cfe8d6'>1.8&deg;</td></tr><tr><td class='src'>om_icon</td><td class='num' style='background:#eef0c9'>2.2&deg;</td></tr><tr><td class='src'>om_meteofrance</td><td class='num' style='background:#eef0c9'>2.9&deg;</td></tr><tr><td class='src'>om_gem</td><td class='num' style='background:#eef0c9'>2.9&deg;</td></tr><tr><td class='src'>om_ecmwf</td><td class='num' style='background:#eef0c9'>3.1&deg;</td></tr><tr><td class='src'>metno</td><td class='num' style='background:#eef0c9'>3.3&deg;</td></tr><tr><td class='src'>om_jma</td><td class='num' style='background:#f7e3c0'>4.3&deg;</td></tr></tbody>
+        <tbody><tr><td class='src'>nws</td><td class='num' style='background:#cfe8d6'>1.7&deg;</td></tr><tr><td class='src'>om_ukmo</td><td class='num' style='background:#cfe8d6'>1.7&deg;</td></tr><tr><td class='src'>om_gfs</td><td class='num' style='background:#cfe8d6'>1.8&deg;</td></tr><tr><td class='src'>om_best</td><td class='num' style='background:#cfe8d6'>2.0&deg;</td></tr><tr><td class='src'>om_ecmwf</td><td class='num' style='background:#eef0c9'>2.1&deg;</td></tr><tr><td class='src'>om_icon</td><td class='num' style='background:#eef0c9'>2.1&deg;</td></tr><tr><td class='src'>om_gem</td><td class='num' style='background:#eef0c9'>2.3&deg;</td></tr><tr><td class='src'>metno</td><td class='num' style='background:#eef0c9'>2.8&deg;</td></tr><tr><td class='src'>om_meteofrance</td><td class='num' style='background:#f7e3c0'>4.0&deg;</td></tr><tr><td class='src'>om_jma</td><td class='num' style='background:#f7e3c0'>4.1&deg;</td></tr></tbody>
       </table>
       <h2>Accuracy by airport <span class="sub">(last 30 days)</span></h2>
       <p class="note">High-temperature mean absolute error (&deg;F) per airport and source.
@@ -186,7 +352,7 @@
       <div class="scroll">
       <table class="heat">
         <thead><tr><th>Airport</th><th>metno</th><th>nws</th><th>om_best</th><th>om_ecmwf</th><th>om_gem</th><th>om_gfs</th><th>om_icon</th><th>om_jma</th><th>om_meteofrance</th><th>om_ukmo</th></tr></thead>
-        <tbody><tr><td class='src'>KATL</td><td class='num' style='background:#cfe8d6'>0.7</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#cfe8d6'>1.2</td><td class='num' style='background:#eef0c9'>3.7</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#eef0c9'>3.0</td><td class='num' style='background:#f6d2bd'>6.5</td><td class='num' style='background:#eef0c9'>3.4</td><td class='num' style='background:#cfe8d6'>1.6</td></tr><tr><td class='src'>KMIA</td><td class='num' style='background:#eef0c9'>2.7</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#f7e3c0'>5.5</td><td class='num' style='background:#f7e3c0'>4.4</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#eef0c9'>2.7</td><td class='num' style='background:#f7e3c0'>4.7</td><td class='num' style='background:#eef0c9'>3.5</td><td class='num' style='background:#eef0c9'>2.5</td></tr><tr><td class='src'>KDCA</td><td class='num' style='background:#cfe8d6'>1.9</td><td class='num' style='background:#cfe8d6'>1.2</td><td class='num' style='background:#cfe8d6'>2.0</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#eef0c9'>3.9</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#f7e3c0'>4.7</td><td class='num' style='background:#eef0c9'>3.0</td><td class='num' style='background:#cfe8d6'>1.9</td></tr><tr><td class='src'>KHOU</td><td class='num' style='background:#f7e3c0'>5.7</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#eef0c9'>3.1</td><td class='num' style='background:#eef0c9'>4.0</td><td class='num' style='background:#f7e3c0'>5.0</td><td class='num' style='background:#eef0c9'>2.7</td><td class='num' style='background:#eef0c9'>3.7</td><td class='num' style='background:#f6d2bd'>6.5</td><td class='num' style='background:#f7e3c0'>4.9</td><td class='num' style='background:#eef0c9'>2.8</td></tr><tr><td class='src'>KBOS</td><td class='num' style='background:#f2c0c0'>10.7</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#cfe8d6'>0.7</td><td class='num' style='background:#eef0c9'>2.9</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#eef0c9'>2.0</td><td class='num' style='background:#f7e3c0'>4.6</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#cfe8d6'>1.9</td></tr><tr><td class='src'>KMSY</td><td class='num' style='background:#f7e3c0'>4.2</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#cfe8d6'>1.9</td><td class='num' style='background:#f7e3c0'>5.0</td><td class='num' style='background:#cfe8d6'>1.0</td><td class='num' style='background:#cfe8d6'>1.9</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#eef0c9'>2.9</td><td class='num' style='background:#f7e3c0'>4.7</td><td class='num' style='background:#eef0c9'>2.1</td></tr><tr><td class='src'>KOKC</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#eef0c9'>3.2</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#eef0c9'>2.0</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#eef0c9'>3.6</td><td class='num' style='background:#eef0c9'>2.4</td></tr><tr><td class='src'>KAUS</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#cfe8d6'>0.9</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#cfe8d6'>0.7</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#f7e3c0'>4.2</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#cfe8d6'>1.1</td></tr><tr><td class='src'>KDEN</td><td class='num' style='background:#cfe8d6'>1.5</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#cfe8d6'>0.6</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#eef0c9'>2.5</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#eef0c9'>3.2</td><td class='num' style='background:#eef0c9'>2.6</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#eef0c9'>2.0</td></tr><tr><td class='src'>KSFO</td><td class='num' style='background:#f6d2bd'>6.2</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#f6d2bd'>6.6</td><td class='num' style='background:#f7e3c0'>4.7</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#eef0c9'>2.7</td><td class='num' style='background:#f2c0c0'>9.7</td><td class='num' style='background:#f2c0c0'>14.8</td><td class='num' style='background:#eef0c9'>3.6</td></tr><tr><td class='src'>KPHL</td><td class='num' style='background:#eef0c9'>2.5</td><td class='num' style='background:#cfe8d6'>0.9</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>1.0</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#cfe8d6'>0.3</td><td class='num' style='background:#f7e3c0'>4.4</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#cfe8d6'>1.2</td></tr><tr><td class='src'>KLAX</td><td class='num' style='background:#f7e3c0'>4.9</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#f7e3c0'>5.0</td><td class='num' style='background:#eef0c9'>2.1</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#eef0c9'>3.8</td><td class='num' style='background:#eef0c9'>2.8</td></tr><tr><td class='src'>KLAS</td><td class='num' style='background:#cfe8d6'>0.6</td><td class='num' style='background:#cfe8d6'>0.6</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#cfe8d6'>0.9</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#eef0c9'>2.6</td><td class='num' style='background:#cfe8d6'>0.5</td><td class='num' style='background:#cfe8d6'>0.9</td></tr><tr><td class='src'>KSEA</td><td class='num' style='background:#eef0c9'>2.1</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#eef0c9'>2.7</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#cfe8d6'>1.8</td><td class='num' style='background:#f7e3c0'>4.6</td></tr><tr><td class='src'>KMSP</td><td class='num' style='background:#eef0c9'>2.8</td><td class='num' style='background:#eef0c9'>3.3</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#eef0c9'>3.6</td><td class='num' style='background:#f7e3c0'>4.0</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#eef0c9'>2.7</td><td class='num' style='background:#f7e3c0'>4.1</td><td class='num' style='background:#f7e3c0'>4.4</td><td class='num' style='background:#eef0c9'>3.8</td></tr><tr><td class='src'>KMDW</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#cfe8d6'>1.0</td><td class='num' style='background:#eef0c9'>2.0</td><td class='num' style='background:#eef0c9'>2.6</td><td class='num' style='background:#eef0c9'>4.0</td><td class='num' style='background:#cfe8d6'>1.9</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#eef0c9'>2.5</td></tr><tr><td class='src'>KPHX</td><td class='num' style='background:#cfe8d6'>1.0</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>0.7</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#cfe8d6'>1.8</td><td class='num' style='background:#eef0c9'>3.8</td><td class='num' style='background:#cfe8d6'>1.2</td><td class='num' style='background:#eef0c9'>2.4</td></tr><tr><td class='src'>KDFW</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#cfe8d6'>1.2</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#cfe8d6'>1.2</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>1.3</td></tr><tr><td class='src'>KSAT</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>2.0</td><td class='num' style='background:#cfe8d6'>1.5</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#cfe8d6'>2.0</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#f7e3c0'>4.2</td><td class='num' style='background:#cfe8d6'>1.8</td></tr></tbody>
+        <tbody><tr><td class='src'>KATL</td><td class='num' style='background:#cfe8d6'>0.7</td><td class='num' style='background:#cfe8d6'>1.5</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#eef0c9'>3.6</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#eef0c9'>2.9</td><td class='num' style='background:#f6d2bd'>6.5</td><td class='num' style='background:#eef0c9'>3.1</td><td class='num' style='background:#cfe8d6'>1.7</td></tr><tr><td class='src'>KMIA</td><td class='num' style='background:#eef0c9'>3.0</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#f6d2bd'>6.1</td><td class='num' style='background:#f7e3c0'>4.7</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#eef0c9'>3.0</td><td class='num' style='background:#f7e3c0'>5.0</td><td class='num' style='background:#eef0c9'>3.7</td><td class='num' style='background:#eef0c9'>2.5</td></tr><tr><td class='src'>KDCA</td><td class='num' style='background:#eef0c9'>2.1</td><td class='num' style='background:#cfe8d6'>1.2</td><td class='num' style='background:#cfe8d6'>2.0</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#eef0c9'>3.8</td><td class='num' style='background:#cfe8d6'>0.7</td><td class='num' style='background:#cfe8d6'>1.2</td><td class='num' style='background:#f7e3c0'>5.2</td><td class='num' style='background:#eef0c9'>3.1</td><td class='num' style='background:#cfe8d6'>1.7</td></tr><tr><td class='src'>KHOU</td><td class='num' style='background:#f7e3c0'>5.6</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#eef0c9'>3.1</td><td class='num' style='background:#eef0c9'>4.0</td><td class='num' style='background:#f7e3c0'>4.7</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#eef0c9'>3.5</td><td class='num' style='background:#f6d2bd'>6.6</td><td class='num' style='background:#f7e3c0'>4.8</td><td class='num' style='background:#eef0c9'>2.7</td></tr><tr><td class='src'>KBOS</td><td class='num' style='background:#f2c0c0'>10.5</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#cfe8d6'>1.5</td><td class='num' style='background:#cfe8d6'>0.7</td><td class='num' style='background:#eef0c9'>2.9</td><td class='num' style='background:#cfe8d6'>1.5</td><td class='num' style='background:#cfe8d6'>1.8</td><td class='num' style='background:#f7e3c0'>4.1</td><td class='num' style='background:#cfe8d6'>1.5</td><td class='num' style='background:#cfe8d6'>2.0</td></tr><tr><td class='src'>KMSY</td><td class='num' style='background:#f7e3c0'>4.4</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#f7e3c0'>5.3</td><td class='num' style='background:#cfe8d6'>1.0</td><td class='num' style='background:#cfe8d6'>1.9</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#eef0c9'>3.2</td><td class='num' style='background:#f7e3c0'>5.2</td><td class='num' style='background:#cfe8d6'>2.0</td></tr><tr><td class='src'>KOKC</td><td class='num' style='background:#eef0c9'>2.6</td><td class='num' style='background:#eef0c9'>2.1</td><td class='num' style='background:#eef0c9'>2.6</td><td class='num' style='background:#eef0c9'>3.0</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#f7e3c0'>4.4</td><td class='num' style='background:#eef0c9'>2.9</td></tr><tr><td class='src'>KAUS</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#cfe8d6'>1.0</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#eef0c9'>3.8</td><td class='num' style='background:#cfe8d6'>1.2</td><td class='num' style='background:#cfe8d6'>0.9</td></tr><tr><td class='src'>KDEN</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#cfe8d6'>0.6</td><td class='num' style='background:#cfe8d6'>1.5</td><td class='num' style='background:#eef0c9'>2.5</td><td class='num' style='background:#cfe8d6'>0.7</td><td class='num' style='background:#eef0c9'>3.0</td><td class='num' style='background:#eef0c9'>2.8</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#cfe8d6'>1.8</td></tr><tr><td class='src'>KSFO</td><td class='num' style='background:#f7e3c0'>5.9</td><td class='num' style='background:#cfe8d6'>1.6</td><td class='num' style='background:#cfe8d6'>1.9</td><td class='num' style='background:#f6d2bd'>6.5</td><td class='num' style='background:#f7e3c0'>4.4</td><td class='num' style='background:#cfe8d6'>1.9</td><td class='num' style='background:#eef0c9'>2.7</td><td class='num' style='background:#f2c0c0'>9.6</td><td class='num' style='background:#f2c0c0'>14.3</td><td class='num' style='background:#eef0c9'>3.3</td></tr><tr><td class='src'>KPHL</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#cfe8d6'>0.9</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#cfe8d6'>1.0</td><td class='num' style='background:#cfe8d6'>1.2</td><td class='num' style='background:#cfe8d6'>0.7</td><td class='num' style='background:#cfe8d6'>0.4</td><td class='num' style='background:#f7e3c0'>4.8</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#cfe8d6'>1.1</td></tr><tr><td class='src'>KLAX</td><td class='num' style='background:#f7e3c0'>5.0</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#f7e3c0'>5.0</td><td class='num' style='background:#eef0c9'>2.0</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#cfe8d6'>1.9</td><td class='num' style='background:#cfe8d6'>1.9</td><td class='num' style='background:#eef0c9'>4.0</td><td class='num' style='background:#eef0c9'>2.6</td></tr><tr><td class='src'>KLAS</td><td class='num' style='background:#cfe8d6'>0.6</td><td class='num' style='background:#cfe8d6'>0.6</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>0.7</td><td class='num' style='background:#cfe8d6'>1.0</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#eef0c9'>2.5</td><td class='num' style='background:#cfe8d6'>0.5</td><td class='num' style='background:#cfe8d6'>0.9</td></tr><tr><td class='src'>KSEA</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#cfe8d6'>1.8</td><td class='num' style='background:#cfe8d6'>1.9</td><td class='num' style='background:#eef0c9'>2.5</td><td class='num' style='background:#cfe8d6'>1.8</td><td class='num' style='background:#eef0c9'>2.6</td><td class='num' style='background:#eef0c9'>2.8</td><td class='num' style='background:#eef0c9'>2.1</td><td class='num' style='background:#f7e3c0'>4.2</td></tr><tr><td class='src'>KMSP</td><td class='num' style='background:#eef0c9'>2.6</td><td class='num' style='background:#eef0c9'>3.1</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#eef0c9'>3.1</td><td class='num' style='background:#eef0c9'>3.9</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#f7e3c0'>4.2</td><td class='num' style='background:#f7e3c0'>4.3</td><td class='num' style='background:#eef0c9'>3.6</td></tr><tr><td class='src'>KMDW</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#cfe8d6'>0.9</td><td class='num' style='background:#cfe8d6'>1.9</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#eef0c9'>3.9</td><td class='num' style='background:#cfe8d6'>1.8</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#eef0c9'>2.1</td><td class='num' style='background:#cfe8d6'>1.9</td><td class='num' style='background:#eef0c9'>2.5</td></tr><tr><td class='src'>KPHX</td><td class='num' style='background:#cfe8d6'>0.9</td><td class='num' style='background:#cfe8d6'>1.0</td><td class='num' style='background:#cfe8d6'>0.9</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#cfe8d6'>1.7</td><td class='num' style='background:#cfe8d6'>1.8</td><td class='num' style='background:#eef0c9'>3.8</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#eef0c9'>2.6</td></tr><tr><td class='src'>KDFW</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#eef0c9'>2.3</td><td class='num' style='background:#cfe8d6'>1.5</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#cfe8d6'>1.5</td><td class='num' style='background:#eef0c9'>2.4</td><td class='num' style='background:#cfe8d6'>1.0</td><td class='num' style='background:#cfe8d6'>1.2</td></tr><tr><td class='src'>KSAT</td><td class='num' style='background:#cfe8d6'>1.5</td><td class='num' style='background:#cfe8d6'>1.1</td><td class='num' style='background:#cfe8d6'>2.0</td><td class='num' style='background:#cfe8d6'>1.5</td><td class='num' style='background:#cfe8d6'>0.8</td><td class='num' style='background:#eef0c9'>2.2</td><td class='num' style='background:#cfe8d6'>1.3</td><td class='num' style='background:#cfe8d6'>1.4</td><td class='num' style='background:#f7e3c0'>4.1</td><td class='num' style='background:#cfe8d6'>1.8</td></tr></tbody>
       </table></div>
   <p class="meta" style="margin-top:40px">Ground truth: National Weather Service
   observations at each airport. High-temperature accuracy is the headline metric;
