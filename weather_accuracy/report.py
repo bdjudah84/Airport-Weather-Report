@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 
 import pandas as pd
 
-from . import config, pipeline, store
+from . import analysis, config, pipeline, store
 
 
 # --------------------------------------------------------------------------
@@ -94,6 +94,7 @@ def build_html(now: datetime | None = None) -> str:
     # The daily forecasts themselves -- shown as soon as any have been captured.
     if not fc.empty:
         parts.append(_forecasts_section(fc))
+        parts.append(_spread_section(fc))
 
     if ver.empty:
         parts.append('<div class="empty">Accuracy scores will appear here once the '
@@ -113,32 +114,90 @@ def _forecasts_section(fc: pd.DataFrame) -> str:
     day = fc[fc["target_date"] == latest]
     label = pd.to_datetime(latest).strftime("%b %d, %Y")
 
-    sources = list(dict.fromkeys(day["source"]))           # appearance order
-    present = set(day["icao"])
+    real = day[~day["source"].map(analysis.is_consensus)]
+    sources = list(dict.fromkeys(real["source"]))          # appearance order
+    present = set(real["icao"])
     order = [a.icao for a in config.AIRPORTS if a.icao in present]
-    hi = day.set_index(["icao", "source"])["fcst_tmax_f"].to_dict()
-    lo = day.set_index(["icao", "source"])["fcst_tmin_f"].to_dict()
+    hi = real.set_index(["icao", "source"])["fcst_tmax_f"].to_dict()
+    lo = real.set_index(["icao", "source"])["fcst_tmin_f"].to_dict()
+    # Stored consensus values (fall back to computed mean if disabled/absent).
+    cmean_hi = day[day["source"] == analysis.CONSENSUS_MEAN].set_index("icao")["fcst_tmax_f"].to_dict()
+    cmean_lo = day[day["source"] == analysis.CONSENSUS_MEAN].set_index("icao")["fcst_tmin_f"].to_dict()
+    cwtd_hi = day[day["source"] == analysis.CONSENSUS_WTD].set_index("icao")["fcst_tmax_f"].to_dict()
+    cwtd_lo = day[day["source"] == analysis.CONSENSUS_WTD].set_index("icao")["fcst_tmin_f"].to_dict()
+    has_cons = bool(cwtd_hi)
 
     head = "".join(f"<th>{html.escape(s)}</th>" for s in sources)
+    cons_head = ("<th>Mean</th><th>Wtd&#9733;</th>" if has_cons else "<th>Average</th>")
     body = []
     for icao in order:
         his = [hi.get((icao, s)) for s in sources]
         los = [lo.get((icao, s)) for s in sources]
         cells = "".join(f"<td class='hl'>{_hilo(h, l)}</td>" for h, l in zip(his, los))
-        vh = [x for x in his if x is not None and not pd.isna(x)]
-        vl = [x for x in los if x is not None and not pd.isna(x)]
-        avg = _hilo(sum(vh) / len(vh) if vh else None, sum(vl) / len(vl) if vl else None)
-        body.append(f"<tr><td class='src'>{icao}</td>{cells}<td class='hl avg'>{avg}</td></tr>")
+        if has_cons:
+            cons = (f"<td class='hl cons'>{_hilo(cmean_hi.get(icao), cmean_lo.get(icao))}</td>"
+                    f"<td class='hl cons wtd'>{_hilo(cwtd_hi.get(icao), cwtd_lo.get(icao))}</td>")
+        else:
+            vh = [x for x in his if x is not None and not pd.isna(x)]
+            vl = [x for x in los if x is not None and not pd.isna(x)]
+            cons = (f"<td class='hl cons'>"
+                    f"{_hilo(sum(vh)/len(vh) if vh else None, sum(vl)/len(vl) if vl else None)}</td>")
+        body.append(f"<tr><td class='src'>{icao}</td>{cells}{cons}</tr>")
 
+    note = ("Last two columns are the equal-weight mean and the "
+            "accuracy-weighted consensus (&#9733;). "
+            if has_cons else "The last column is the average across sources. ")
     return f"""
       <h2>Daily forecasts <span class="sub">(high / low &deg;F for {label})</span></h2>
-      <p class="note">What each source is predicting for every airport. The last
-        column is the average across sources.</p>
+      <p class="note">What each source is predicting for every airport. {note}</p>
       <div class="scroll">
       <table class="fcst">
-        <thead><tr><th>Airport</th>{head}<th>Average</th></tr></thead>
+        <thead><tr><th>Airport</th>{head}{cons_head}</tr></thead>
         <tbody>{''.join(body)}</tbody>
       </table></div>"""
+
+
+def _spread_section(fc: pd.DataFrame) -> str:
+    fc = fc.copy()
+    latest = fc["target_date"].max()
+    day = fc[fc["target_date"] == latest]
+    label = pd.to_datetime(latest).strftime("%b %d, %Y")
+    sp = analysis.forecast_spread(day)
+    if sp.empty:
+        return ""
+    order = {a.icao: i for i, a in enumerate(config.AIRPORTS)}
+    sp = sp.sort_values("icao", key=lambda s: s.map(lambda x: order.get(x, 999)))
+
+    rows = []
+    for _, r in sp.iterrows():
+        lab = analysis.spread_label(r["high_std"])
+        color = {"tight": "#cfe8d6", "moderate": "#f7e3c0", "wide": "#f2c0c0"}.get(lab, "#f3f3f1")
+        rng_hi = (f"{r['high_min']:.0f}&ndash;{r['high_max']:.0f}"
+                  if pd.notna(r["high_min"]) else "&mdash;")
+        rng_lo = (f"{r['low_min']:.0f}&ndash;{r['low_max']:.0f}"
+                  if pd.notna(r["low_min"]) else "&mdash;")
+        rows.append(f"""
+          <tr>
+            <td class="src">{r['icao']}</td>
+            <td class="num">{_fmt(r['high_std'])}</td>
+            <td class="num dim">{rng_hi}</td>
+            <td class="num">{_fmt(r['low_std'])}</td>
+            <td class="num dim">{rng_lo}</td>
+            <td class="hl"><span class="lean" style="background:{color}">{lab}</span></td>
+          </tr>""")
+    return f"""
+      <h2>Forecast agreement <span class="sub">(spread across sources, {label})</span></h2>
+      <p class="note">How tightly the sources agree, by airport. &sigma; is the standard
+        deviation of the {sp['n'].max()} source forecasts (&deg;F) &mdash; smaller means
+        stronger agreement and a more trustworthy consensus; wider spread signals
+        greater uncertainty for that day.</p>
+      <table class="board">
+        <thead><tr>
+          <th>Airport</th><th>High &sigma;</th><th>High range</th>
+          <th>Low &sigma;</th><th>Low range</th><th>Agreement</th>
+        </tr></thead>
+        <tbody>{''.join(rows)}</tbody>
+      </table>"""
 
 
 def _hilo(hi, lo) -> str:
@@ -165,10 +224,14 @@ def _leaderboard_section(board: pd.DataFrame) -> str:
         mae_hi = r.get("mae_high", r.get("mae_tmax"))
         mae_lo = r.get("mae_low", r.get("mae_tmin"))
         hit = r.get("hit_rate_high", r.get("hit_rate_tmax"))
+        cons = analysis.is_consensus(r["source"])
+        name = html.escape(str(r["source"]))
+        if cons:
+            name = f"&#9733; {name}"
         rows.append(f"""
-          <tr>
+          <tr class="{'consrow' if cons else ''}">
             <td class="rank">{rank}</td>
-            <td class="src">{html.escape(str(r['source']))}</td>
+            <td class="src">{name}</td>
             <td class="bar"><div class="track"><div class="fill"
                 style="width:{bar:.0f}%"></div></div><span>{_fmt(r['mae_combined'])}&deg;</span></td>
             <td class="num">{_fmt(mae_hi)}</td>
@@ -285,7 +348,8 @@ _HEAD = """<!doctype html><html lang="en"><head><meta charset="utf-8">
   tbody tr:last-child td { border-bottom: none; }
   .num { text-align: right; font-variant-numeric: tabular-nums; }
   .hl { text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .hl.avg { font-weight: 600; background: #f6f5f0; }
+  .hl.cons { background: #f6f5f0; font-weight: 600; }
+  .hl.cons.wtd { background: #e7edf5; }
   .fcst td.src { position: sticky; left: 0; background: #fff; }
   .dim { color: #9a988f; }
   .rank { color: #9a988f; width: 28px; }
@@ -299,6 +363,8 @@ _HEAD = """<!doctype html><html lang="en"><head><meta charset="utf-8">
   .lean.warm { background: #f6d2bd; color: #8a3b1c; }
   .lean.cold { background: #cfe0f0; color: #1d4e7a; }
   .lean.even { background: #e9e8e2; color: #6b6a63; }
+  .consrow { background: #f3f6fb; }
+  .consrow .src { font-weight: 600; }
   .mini { max-width: 360px; }
   .scroll { overflow-x: auto; }
   .heat td.src { position: sticky; left: 0; background: #fff; }
