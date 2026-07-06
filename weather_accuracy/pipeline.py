@@ -18,7 +18,7 @@ from zoneinfo import ZoneInfo
 
 import pandas as pd
 
-from . import config, observations, sources, store
+from . import analysis, config, observations, sources, store
 
 
 # --------------------------------------------------------------------------
@@ -54,6 +54,12 @@ def run_forecast_pull(issue_ts: datetime | None = None) -> pd.DataFrame:
     df = pd.DataFrame(rows)
     if not df.empty:
         store.append_forecasts(df)
+        if config.CONSENSUS_ENABLED:
+            cons = analysis.build_consensus_rows(df, issue_ts, now=issue_ts)
+            if not cons.empty:
+                store.append_forecasts(cons)
+                print(f"Added {len(cons)} consensus rows "
+                      f"({analysis.CONSENSUS_MEAN}, {analysis.CONSENSUS_WTD}).")
     print(f"Captured {len(df)} forecast rows.")
     return df
 
